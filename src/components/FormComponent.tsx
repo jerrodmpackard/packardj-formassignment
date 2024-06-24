@@ -46,10 +46,10 @@ const FormComponent = () => {
         alert(`You entered: ${result.data}`)
     }
     return (
-        // We pass the event to the handleSubmit() function on submit.
         <>
             <h1 className='text-4xl text-center mb-3'>Create an account</h1>
 
+            {/* We pass the event to the handleSubmit() function on submit. */}
             <form onSubmit={handleSubmit} className='flex flex-col bg-stone-400 p-5 w-80 mx-auto'>
                 <label htmlFor="first">First Name</label>
                 <input type="text" id="first" name="first" className='border border-black mb-3' maxLength={100} required />
