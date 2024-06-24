@@ -76,38 +76,10 @@ const FormComponent = () => {
 
     return (
         <>
-            <h1 className='text-4xl text-center mb-3'>Create an account</h1>
-
             {/* We pass the event to the handleSubmit() function on submit. */}
-            {/* <form onSubmit={handleSubmit} className='flex flex-col bg-stone-400 p-5 w-80 mx-auto'>
-                <label htmlFor="first">First Name</label>
-                <input type="text" id="first" name="first" className='border border-black mb-3 px-1' maxLength={100} required />
-
-                <label htmlFor="last">Last Name</label>
-                <input type="text" id="last" name="last" className='border border-black mb-3 px-1' maxLength={100} required />
-
-                <label htmlFor="emailAddress">Email Address</label>
-                <input type="email" name='emailAddress' id='emailAddress' className='border border-black mb-3 px-1' required />
-
-                <label htmlFor="birthDate">Date of Birth</label>
-                <input type="date" name="birthDate" id="birthDate" className='border border-black mb-3 px-1' required />
-
-                <label htmlFor="address">Address</label>
-                <input type="text" name="address" id="address" className='border border-black mb-3 px-1' maxLength={100} />
-
-                <label htmlFor="phoneNumber">Phone Number</label>
-                <input type="text" name="phoneNumber" id="phoneNumber" className='border border-black mb-3 px-1' maxLength={100} />
-
-                <label htmlFor="password">Password</label>
-                <input type="text" name="password" id="password" className='border border-black mb-3 px-1' minLength={15} maxLength={100} required />
-
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input type="text" name="confirmPassword" id="confirmPassword" className='border border-black mb-3 px-1' minLength={15} maxLength={100} required />
-
-                <button type="submit" className='border border-black w-32 mx-auto bg-white'>Submit</button>
-            </form> */}
-
             <FormControl className='flex flex-col bg-white p-5 w-80 mx-auto'>
+                <h1 className='text-3xl text-center mb-3'>Create an account</h1>
+
                 <TextField
                     required
                     margin='normal'
@@ -153,20 +125,19 @@ const FormComponent = () => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={['DatePicker']}>
                         <DesktopDatePicker
-                        disableFuture
-                        className='w-full'
-                        minDate={minDate}
-                        maxDate={today}
-                        name='birthDate'
-                        label="Date of birth"
-                        value={birthDate}
-                        onChange={(newValue) => setBirthDate(newValue)}
+                            disableFuture
+                            className='w-full'
+                            minDate={minDate}
+                            maxDate={today}
+                            name='birthDate'
+                            label="Date of birth"
+                            value={birthDate}
+                            onChange={(newValue) => setBirthDate(newValue)}
                         />
                     </DemoContainer>
                 </LocalizationProvider>
 
                 <TextField
-                    required
                     margin='normal'
                     autoComplete='off'
                     id='address'
@@ -180,7 +151,6 @@ const FormComponent = () => {
                 />
 
                 <TextField
-                    required
                     margin='normal'
                     autoComplete='off'
                     id='phoneNumber'

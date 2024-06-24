@@ -1,4 +1,3 @@
-import CreateAccountComponent from "@/components/CreateAccountComponent";
 import FormComponent from "@/components/FormComponent";
 
 export default function Home() {
