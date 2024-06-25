@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Jerrod Packard
+June 25, 2024
+Form Practice
+Created a form based upon client requirements with validation on each input field.
 
-## Getting Started
+You must:
+    - Upload to your github account and keep your repository private.
+    - Add us as collaborators to your repository
+        carolinehanaa
+        Brand0nLe
+    - Upload to vercel and post the vercel link in this thread by 5PM.
+    - Must be Mobile, Tablet, and Laptop Responsive.
+    - UI/UX is up to your discretion again.
 
-First, run the development server:
+Form Requirements:
+    - First Name - REQUIRED
+    - Last Name - REQUIRED
+    - Email - REQUIRED
+    - Date of Birth - REQUIRED
+    - Address
+    - Phone number
+    - Password - REQUIRED
+    - Confirm Password - REQUIRED
+    - Submit Button - When you press submit there should be a "Success" message. You can use a toast for example to show the form was submitted successfully and also if the form is unable to be submitted.
+    - After a successful submission, have the form reset and all input fields should be empty.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Each input will need validation:
+    - First & Last Name - max char 100
+    - Email - if user does not type in a valid email with the '@'
+    - Date of Birth - should not allow future dates other than the day of, and you must use a date picker. Validation should still work if user manually changes the input without the date picker.
+    - Address - limit to 100 chars
+    - Phone number - validate the format to match: (123)-456-7890
+    - Password - 15 characters minimum, 1 Uppercase, 1 Number, 1 Special Char only from the following: (? ! @ # $ % ^ & *) no other special chars should work
+    - Confirm Password - must match the first input field.
