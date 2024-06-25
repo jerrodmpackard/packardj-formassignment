@@ -68,7 +68,7 @@ const useAuth = () => {
             setBirthDateError('');
         }
 
-        if (/^\(\d{3}\)-\d{3}-\d{4}$/.test(phoneNumber)) {
+        if (!/^\(\d{3}\)-\d{3}-\d{4}$/.test(phoneNumber)) {
             setPhoneError('Invalid phone format');
             valid = false;
         } else {
