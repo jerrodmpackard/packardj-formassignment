@@ -30,12 +30,18 @@ const useAuth = () => {
         if (firstName === '') {
             setFirstNameError('First name is required');
             valid = false;
+        } else if (!/^[A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF'\-]+([\ A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF'\-]+)*$/.test(firstName)) {
+            setFirstNameError('Numbers and special characters are not allowed for names');
+            valid = false;
         } else {
             setFirstNameError('');
         }
 
         if (lastName === '') {
             setLastNameError('Last name is required');
+            valid = false;
+        } else if (!/^[A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF'\-]+([\ A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF'\-]+)*$/.test(lastName)) {
+            setFirstNameError('Numbers and special characters are not allowed for names');
             valid = false;
         } else {
             setLastNameError('');
