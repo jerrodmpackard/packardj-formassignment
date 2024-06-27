@@ -74,9 +74,11 @@ const useAuth = () => {
             setBirthDateError('');
         }
 
-        if (!/^\(\d{3}\)-\d{3}-\d{4}$/.test(phoneNumber)) {
+        if (phoneNumber === '') {
+            setPhoneError('');
+        }
+        else if (!/^\(\d{3}\)-\d{3}-\d{4}$/.test(phoneNumber)) {
             setPhoneError('Invalid phone format');
-            valid = false;
         } else {
             setPhoneError('');
         }
@@ -103,6 +105,117 @@ const useAuth = () => {
 
         return valid;
     }
+
+    const validateField = (name: string, value: string) => {
+        switch (name) {
+            case 'firstName':
+                if (value === '') {
+                    setFirstNameError('First name is required');
+                } else if (!/^[A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF'\-]+([\ A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF'\-]+)*$/.test(value)) {
+                    setFirstNameError('Numbers and special characters are not allowed for names');
+                } else {
+                    setFirstNameError('');
+                }
+                break;
+            case 'lastName':
+                if (value === '') {
+                    setLastNameError('Last name is required');
+                } else if (!/^[A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF'\-]+([\ A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF'\-]+)*$/.test(value)) {
+                    setLastNameError('Numbers and special characters are not allowed for names');
+                } else {
+                    setLastNameError('');
+                }
+                break;
+            case 'emailAddress':
+                const emailPattern = /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i;
+                if (value === '') {
+                    setEmailError('Email address is required');
+                } else if (!emailPattern.test(value)) {
+                    setEmailError('Invalid email address format');
+                } else {
+                    setEmailError('');
+                }
+                break;
+            case 'birthDate':
+                const today = new Date().toISOString().split('T')[0];
+                const hundredYearsAgo = new Date();
+                hundredYearsAgo.setFullYear(hundredYearsAgo.getFullYear() - 100);
+
+                if (value === '') {
+                    setBirthDateError('Date of birth is required');
+                } else if (value > today) {
+                    setBirthDateError('Birth date cannot be a future date');
+                } else if (value < hundredYearsAgo.toISOString().split('T')[0]) {
+                    setBirthDateError('Birth date cannot be more than 100 years in the past');
+                } else {
+                    setBirthDateError('');
+                }
+                break;
+            case 'phoneNumber':
+                if (phoneNumber !== '') {
+                    if (!/^\(\d{3}\)-\d{3}-\d{4}$/.test(value)) {
+                        setPhoneError('Invalid phone format');
+                    } else {
+                        setPhoneError('');
+                    }
+                } else {
+                    setPhoneError('');
+                }
+                break;
+            case 'password':
+                const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{15,}$/;
+                if (value === '') {
+                    setPasswordError('Password is required');
+                } else if (!passwordPattern.test(value)) {
+                    setPasswordError('Password must be at least 15 characters long and include at least one uppercase letter, one number, and one special character');
+                } else {
+                    setPasswordError('');
+                }
+                break;
+            case 'confirmPassword':
+                if (value !== password) {
+                    setConfirmPasswordError('Passwords do not match');
+                } else {
+                    setConfirmPasswordError('');
+                }
+                break;
+            default:
+                break;
+        }
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        switch (name) {
+            case 'firstName':
+                setFirstName(value);
+                break;
+            case 'lastName':
+                setLastName(value);
+                break;
+            case 'emailAddress':
+                setEmailAddress(value);
+                break;
+            case 'dateOfBirth':
+                setBirthDate(value);
+                break;
+            case 'address':
+                setAddress(value);
+                break;
+            case 'phoneNumber':
+                setPhoneNumber(value);
+                break;
+            case 'password':
+                setPassword(value);
+                break;
+            case 'confirmPassword':
+                setConfirmPassword(value);
+                break;
+            default:
+                break;
+        }
+        validateField(name, value);
+    };
 
     // Handles the submit event on form submit.
     const handleSubmit = async (event: React.FormEvent) => {
@@ -205,7 +318,8 @@ const useAuth = () => {
         success,
         setSuccess,
         handleSubmit,
-        resetFields
+        resetFields,
+        handleInputChange
     }
 }
 

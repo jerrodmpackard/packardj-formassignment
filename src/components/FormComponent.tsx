@@ -35,7 +35,8 @@ const FormComponent = () => {
         success,
         setSuccess,
         handleSubmit,
-        resetFields
+        resetFields,
+        handleInputChange
     } = useAuth();
 
     const [visible, setVisible] = useState(false);
@@ -63,6 +64,8 @@ const FormComponent = () => {
     const currentDate: string = `${year}-${formattedMonth}-${formattedDay}`;
 
     date.setFullYear(date.getFullYear() - 100);
+    const hundredYearsAgo = date.toISOString().split('T')[0];
+
 
 
     return (
@@ -74,30 +77,30 @@ const FormComponent = () => {
                     required
                     margin='normal'
                     autoComplete='off'
-                    id='first'
-                    name='first'
+                    id='firstName'
+                    name='firstName'
                     label='First name'
                     value={firstName}
                     variant='outlined'
                     error={!!firstNameError}
                     helperText={firstNameError}
                     inputProps={{ maxLength: 100 }}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    onChange={handleInputChange}
                 />
 
                 <TextField
                     required
                     margin='normal'
                     autoComplete='off'
-                    id='last'
-                    name='last'
+                    id='lastName'
+                    name='lastName'
                     label='Last name'
                     value={lastName}
                     variant='outlined'
                     error={!!lastNameError}
                     helperText={lastNameError}
                     inputProps={{ maxLength: 100 }}
-                    onChange={(e) => setLastName(e.target.value)}
+                    onChange={handleInputChange}
                 />
 
                 <TextField
@@ -113,7 +116,7 @@ const FormComponent = () => {
                     error={!!emailError}
                     helperText={emailError}
                     inputProps={{ maxLength: 100 }}
-                    onChange={(e) => setEmailAddress(e.target.value)}
+                    onChange={handleInputChange}
                 />
 
                 <FormControl>
@@ -136,11 +139,11 @@ const FormComponent = () => {
                         helperText={birthDateError}
                         InputProps={{
                             inputProps: {
-                                min: "1924-01-01",
+                                min: hundredYearsAgo,
                                 max: currentDate
                             }
                         }}
-                        onChange={(e) => setBirthDate(e.target.value)}
+                        onChange={handleInputChange}
                     />
                 </FormControl>
 
@@ -155,11 +158,13 @@ const FormComponent = () => {
                     error={!!addressError}
                     helperText={addressError}
                     inputProps={{ maxLength: 100 }}
-                    onChange={(e) => setAddress(e.target.value)}
+                    onChange={handleInputChange}
                 />
 
                 <CustomTextField
                     className='mt-4 mb-2'
+                    id='phoneNumber'
+                    name='phoneNumber'
                     label="Phone number"
                     variant="outlined"
                     type="tel"
@@ -193,7 +198,7 @@ const FormComponent = () => {
                             </InputAdornment>
                         )
                     }}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={handleInputChange}
                 />
 
                 <TextField
@@ -218,7 +223,7 @@ const FormComponent = () => {
                             </InputAdornment>
                         )
                     }}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    onChange={handleInputChange}
                 />
 
                 <div className='grid grid-cols-2'>
